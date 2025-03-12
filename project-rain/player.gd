@@ -10,6 +10,7 @@ var pause_menu: Control  # Changed from CanvasLayer to Control
 func _ready() -> void:
 	# Ensure the game starts unpaused
 	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)  # Lock the mouse at the start
 
 	# Load and instance the pause menu scene
 	var pause_scene = load("res://pause_menu.tscn")
@@ -59,10 +60,11 @@ func toggle_pause() -> void:
 	is_paused = not is_paused
 	get_tree().paused = is_paused
 
-	# Show or hide the pause menu
+	# Show or hide the pause menu and update mouse behavior
 	if pause_menu:
 		if is_paused:
 			pause_menu.show()
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)  # Allow free mouse movement
 		else:
 			pause_menu.hide()
-			
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)  # Capture mouse back into game

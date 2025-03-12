@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://wa7smxnxy4h"]
+[gd_scene load_steps=5 format=3 uid="uid://wa7smxnxy4h"]
 
 [ext_resource type="FontFile" uid="uid://bg2ropg52mkne" path="res://trebuc.ttf" id="1_jhvom"]
 [ext_resource type="Script" path="res://pause_menu.gd" id="1_kbdgn"]
+[ext_resource type="Script" path="res://check_box.gd" id="3_c685h"]
+[ext_resource type="AudioStream" uid="uid://wp6kho1x4d1u" path="res://light-rain-by-liecio-from-pixabay.mp3" id="4_yshne"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -74,7 +76,33 @@ theme_override_fonts/font = ExtResource("1_jhvom")
 theme_override_font_sizes/font_size = 24
 text = "QUIT"
 
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.928819
+anchor_top = 0.921296
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -56.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_jhvom")
+theme_override_font_sizes/font_size = 24
+button_pressed = true
+text = "Rain"
+vertical_icon_alignment = 0
+script = ExtResource("3_c685h")
+metadata/_edit_use_anchors_ = true
+
+[node name="Rainsounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yshne")
+volume_db = -17.0
+autoplay = true
+
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="toggled" from="CheckBox" to="CheckBox" method="_on_toggled"]
