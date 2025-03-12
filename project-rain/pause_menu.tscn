@@ -96,7 +96,7 @@ vertical_icon_alignment = 0
 script = ExtResource("3_c685h")
 metadata/_edit_use_anchors_ = true
 
-[node name="Rainsounds" type="AudioStreamPlayer" parent="."]
+[node name="Rainsounds" type="AudioStreamPlayer" parent="CheckBox"]
 stream = ExtResource("4_yshne")
 volume_db = -17.0
 autoplay = true

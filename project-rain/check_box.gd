@@ -1,6 +1,6 @@
 extends CheckBox
 
-@onready var sound_player = $AudioStreamPlayer  # Reference the sound player
+@onready var sound_player = $Rainsounds  # Reference the sound player
 
 func _ready() -> void:
 	# Connect the checkbox "toggled" signal to the function

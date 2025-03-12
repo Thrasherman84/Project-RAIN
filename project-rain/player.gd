@@ -16,7 +16,8 @@ func _ready() -> void:
 	var pause_scene = load("res://pause_menu.tscn")
 	if pause_scene:
 		pause_menu = pause_scene.instantiate() as Control  # Correctly cast to Control
-		get_tree().root.add_child(pause_menu)  # Add to the root so it overlays everything
+		# Defer adding the pause menu until the parent is ready
+		get_tree().root.call_deferred("add_child", pause_menu)
 		pause_menu.hide()  # Hide it at the start
 
 func _physics_process(delta: float) -> void:
