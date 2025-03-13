@@ -1,14 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://dowj175ni0scp"]
+[gd_scene load_steps=14 format=3 uid="uid://dowj175ni0scp"]
 
 [ext_resource type="Script" path="res://player.gd" id="2_wxiw7"]
+[ext_resource type="Shader" path="res://green.gdshader" id="3_gpddt"]
+[ext_resource type="Shader" path="res://red.gdshader" id="3_m48dm"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_mhm51"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ftj45"]
 size = Vector3(60, 1, 60)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dcx1a"]
+render_priority = 0
+shader = ExtResource("3_gpddt")
+
 [sub_resource type="BoxMesh" id="BoxMesh_g0y8v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3grhr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2h321"]
+render_priority = 0
+shader = ExtResource("3_m48dm")
 
 [sub_resource type="BoxMesh" id="BoxMesh_m23ja"]
 
@@ -24,7 +34,10 @@ sky = SubResource("Sky_8x8w4")
 [node name="Node" type="Node"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4, 0)
+transform = Transform3D(0.5, -3.78552e-08, 0.866025, -0.866025, -2.18557e-08, 0.5, 0, -1, -4.37114e-08, 0, 4, 0)
+shadow_enabled = true
+shadow_opacity = 0.8
+shadow_blur = 2.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -35,6 +48,7 @@ shape = SubResource("BoxShape3D_ftj45")
 
 [node name="Floor" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(60, 0, 0, 0, 1, 0, 0, 0, 60, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_dcx1a")
 mesh = SubResource("BoxMesh_g0y8v")
 skeleton = NodePath("../CollisionShape3D")
 
@@ -55,6 +69,7 @@ smooth_speed = 10.0
 shape = SubResource("BoxShape3D_3grhr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player/CollisionShape3D"]
+material_override = SubResource("ShaderMaterial_2h321")
 mesh = SubResource("BoxMesh_m23ja")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
