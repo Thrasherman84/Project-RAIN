@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dowj175ni0scp"]
+[gd_scene load_steps=10 format=3 uid="uid://dowj175ni0scp"]
 
 [ext_resource type="Script" path="res://player.gd" id="2_wxiw7"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_mhm51"]
@@ -11,6 +11,15 @@ size = Vector3(60, 1, 60)
 [sub_resource type="BoxShape3D" id="BoxShape3D_3grhr"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_m23ja"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2g2gv"]
+
+[sub_resource type="Sky" id="Sky_8x8w4"]
+sky_material = SubResource("ProceduralSkyMaterial_2g2gv")
+
+[sub_resource type="Environment" id="Environment_1ur6d"]
+background_mode = 2
+sky = SubResource("Sky_8x8w4")
 
 [node name="Node" type="Node"]
 
@@ -47,3 +56,6 @@ shape = SubResource("BoxShape3D_3grhr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player/CollisionShape3D"]
 mesh = SubResource("BoxMesh_m23ja")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1ur6d")
